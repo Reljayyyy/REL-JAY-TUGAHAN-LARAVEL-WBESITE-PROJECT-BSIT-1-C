@@ -1,108 +1,124 @@
-Laravel + Inertia.js + React CRUD Application
+Rel Jay Tugahan CRUD Project
 
-A modern full-stack web application featuring item/inventory management with categories, user authentication, and interactive React UI components built using Laravel, Inertia.js, and React.
+A modern, full-stack web application built with Laravel, Inertia.js, React, and Tailwind CSS. This project features full CRUD (Create, Read, Update, Delete) operations, file management/attachments, real-time filtering & search, and an integrated AI Assistant interface.
 
-🛠️ Tech Stack & Dependencies
+🚀 Features
 
-Backend Framework: Laravel (PHP)
+Full CRUD Operations: Create, view, edit, and delete items seamlessly without page reloads (via Inertia.js).
 
-Frontend Framework: React (JSX)
+File Upload & Storage: Attach documents, images, or archives to items with automatic storage cleanup on edit/delete.
 
-Adapter: Inertia.js (Monolithic Single-Page Application architecture)
+Search & Categorization: Instant search and dynamic category filtering (General, Documents, Projects, Archive).
 
-Database: MySQL
+Interactive UI: Clean, responsive layout using Tailwind CSS and Lucide React icons.
 
-Styling: Tailwind CSS
+AI Assistant Widget: Embedded overview assistant powered by AI queries to summarize and inspect item data.
 
-Build Tool: Vite
+Authentication: Built on top of Laravel Breeze with secure user registration and login.
 
-✨ Features
+🛠️ Tech Stack
 
-Authentication System: User registration, login, password reset, and profile management (Laravel Breeze / Inertia).
+Backend: Laravel 11+ / PHP 8.2+
 
-Item Management (CRUD):
+Frontend: React (with @inertiajs/react), Tailwind CSS, Lucide Icons
 
-Create, view, edit, and delete inventory items.
+Database: MySQL / MariaDB
 
-Category assignment for each item.
+State & Routing: Inertia.js
 
-Real-time form validations and modal popups.
+📋 Prerequisites
 
-Database Migrations: Structured schema for users, items, and categories.
+Ensure you have the following installed on your machine:
 
-🚀 Local Development Setup
-
-Follow these steps to run the project on your local machine:
-
-1. Prerequisites
-
-Ensure you have the following installed:
-
-PHP (v8.2 or higher)
+PHP (>= 8.2)
 
 Composer
 
-Node.js & npm
+Node.js (>= 18.x) & NPM
 
-MySQL (via XAMPP, WampServer, or native installation)
+MySQL or another supported database server
 
-2. Clone the Repository
+🔧 Installation & Setup
 
-git clone https://github.com/Reljayyyy/LARAVEL-PROJECT-WEB.-DEVELOPMENT.git
-cd Website
+Follow these steps to get the application up and running locally:
 
+1. Clone the Repository & Install Dependencies
 
-3. Install Backend Dependencies
+# Clone the repository
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 
+# Install PHP dependencies
 composer install
 
-
-4. Install Frontend Dependencies
-
+# Install Frontend dependencies
 npm install
 
 
-5. Configure Environment Variables
+2. Configure Environment
 
-Copy the .env.example file to create your .env file:
+Copy the example environment file and configure your database settings:
 
 cp .env.example .env
+php artisan key:generate
 
 
-Open .env and configure your database credentials:
+Open .env in your text editor and set your database parameters:
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=your_local_database_name
+DB_DATABASE=laravel
 DB_USERNAME=root
 DB_PASSWORD=
 
 
-6. Generate Application Key & Run Migrations
+3. Run Database Migrations
 
-php artisan key:generate
-php artisan migrate --seed
+Set up your database tables:
+
+php artisan migrate:fresh
 
 
-7. Run Local Servers
+4. Link Public Storage
 
-In one terminal, start the PHP server:
+Enable public access to uploaded file attachments:
+
+php artisan storage:link
+
+
+🏃 Running the Application
+
+Start both the Laravel backend server and the Vite development server in separate terminal windows:
+
+Terminal 1 (Laravel Server):
 
 php artisan serve
 
 
-In a second terminal, start the Vite development server for React:
+Terminal 2 (Vite / Frontend):
 
 npm run dev
 
 
-Visit the application at http://127.0.0.1:8000.
+Visit the application in your browser at http://127.0.0.1:8000.
 
-📦 Deployment Instructions
+📁 Key File Structure
 
-Preparing Frontend Assets for Production
+app/
+├── Http/Controllers/
+│   └── ItemController.php       # Handles CRUD operations & file storage logic
+└── Models/
+    └── Item.php                 # Eloquent model for items
 
-Before deploying to any web host (such as Fly.io, InfinityFree, or Caleho Cloud), always compile production assets:
+database/
+└── migrations/
+    └── *_create_items_table.php # Database schema migration
 
-npm run build
+resources/
+└── js/
+    └── Pages/
+        └── Dashboard.jsx        # Main React/Inertia dashboard component
+
+routes/
+└── web.php                      # Application web routes
